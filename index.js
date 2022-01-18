@@ -1,3 +1,5 @@
+import 'dotenv';
+
 // API Key for NASA
 const apiKey = 'tK3Q0tNMmEakg5UPV3IvQ9rn4WQV3upzpWuLhA7H';
 
