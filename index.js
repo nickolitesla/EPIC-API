@@ -1,5 +1,5 @@
 // API Key for NASA
-const apiKey = '[Enter your key here]';
+const apiKey = 'tK3Q0tNMmEakg5UPV3IvQ9rn4WQV3upzpWuLhA7H';
 
 // Create date object
 const date = new Date();
@@ -85,55 +85,6 @@ function displayImageContent(data) {
         var img = document.createElement('img');
         img.src = 'https://api.nasa.gov/EPIC/archive/natural/' + dateTransformed + '/png/' + data[i].image + '.png?api_key=tK3Q0tNMmEakg5UPV3IvQ9rn4WQV3upzpWuLhA7H';
         document.getElementsByClassName('mySlides fade')[i].append(img);
-
-        //Create content-container
-     
-
-        // /* 
-        
-        //     Add coordinates to content-container 
-        
-        // */
-        
-          
-            
-        // //Create Latitude label and add it to document
-        // var latLabel = document.createElement('h2');
-        // latLabel.id = 'content';
-        // latLabel.innerText = 'Latitude:';
-        // document.getElementsByClassName('content-container')[i].append(latLabel);
-
-        // //Create latitude and add it to document
-        // var lat = document.createElement('h2');
-        // lat.id = 'content';
-        // lat.innerText = data[i].centroid_coordinates.lat;
-        // document.getElementsByClassName('content-container')[i].append(lat);
-
-        // //Create longitude label and add it to document
-        // var lonLabel = document.createElement('h2');
-        // lonLabel.id = 'content';
-        // lonLabel.innerText = 'Longitude:';
-        // document.getElementsByClassName('content-container')[i].append(lonLabel);
-
-        // //Create longitude and add it to document
-        // var long = document.createElement('h2');
-        // long.id = 'content';
-        // long.innerText = data[i].centroid_coordinates.lon;
-        // document.getElementsByClassName('content-container')[i].append(long);
-
-        // // //add attitude quaternions into content-container
-        // // var attitudeQuaternions = document.createElement('h2');
-        // // attitudeQuaternions.id = 'content';
-
-        // // //
-        // // attitudeQuaternions.innerText = 'q0: ' + data[i].attitude_quaternions.q0;
-        // // document.getElementsByClassName('content-container')[i].append(attitudeQuaternions);
-
-        // //Add caption
-        // var caption = document.createElement('h2');
-        // caption.id = 'caption';
-        // caption.innerText = data[i].caption;
-        // document.getElementsByClassName('content-container')[i].append(caption);
     }
 
     //prev and next buttons
