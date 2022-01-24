@@ -1,5 +1,5 @@
 // API Key for NASA
-const apiKey = 'tK3Q0tNMmEakg5UPV3IvQ9rn4WQV3upzpWuLhA7H';
+const apiKey = '[Enter your key here]';
 
 // Create date object
 const date = new Date();
