@@ -146,3 +146,15 @@ img {
     from {opacity: .4} 
     to {opacity: 1}
   }
+
+  @media only screen and (max-width: 425px) {
+      #grid-container{
+          grid-template-columns: 1fr;
+      }
+      .slideshow-container{
+        padding: 0 1em;   
+      }
+      #header{
+          padding-bottom: 0;
+      }
+  }
