@@ -22,14 +22,15 @@ else
     day = date.getDate();
    
 //concatenate strings
+const todaysDate = date.getFullYear()+ '-' + month + '-' + day;
 let dateString = date.getFullYear()+ '-' + month + '-' + day;
 
 let obj;
-fetchData();
+fetchData(dateString);
 
 // fetch the data for the prior day from EPIC API
-function fetchData(){
-    fetch('https://api.nasa.gov/EPIC/api/natural/date/' + dateString + '?api_key=' + apiKey)
+function fetchData(date){
+    fetch('https://api.nasa.gov/EPIC/api/natural/date/' + date + '?api_key=' + apiKey)
         .then(res => res.json())
         .then(data => {
             obj = data;  
@@ -37,36 +38,36 @@ function fetchData(){
             //If there are no pictures on the prior day then recursively 
             //test the x - 1 day until array > 0
             if(obj.length == 0){
-                let tempNum = dateString.slice(-2) - 1;
+                let tempNum = date.slice(-2) - 1;
 
                 //Reformat date if under 10
                 if(tempNum < 10){
                     tempNum = '0' + tempNum;
                 }
 
-                dateString = dateString.slice(0, -2) + tempNum;
-                fetchData();
+                date = date.slice(0, -2) + tempNum;
+                fetchData(date);
                 return;
             } 
 
-            console.log(dateString);
+            console.log(date);
             console.log(obj);
-            document.getElementById('header').innerHTML = 'EARTH  ' + dateString;
-            displayImageContent(obj);
+            document.getElementById('header').innerHTML = 'EARTH ' + date;
+            displayImageContent(obj, date);
             return obj;
         })
 }
 
 // Convert '-' to '/' from JSON to url request
 function dateTransform(date){
-    dateString = dateString.replace(/-/g, '/' );
+    dateString = date.replace(/-/g, '/' );
     return dateString;
 }
 
 // Display image of earth for the day prior
-function displayImageContent(data) {
+function displayImageContent(data, date) {
 
-    let dateTransformed = dateTransform();
+    let dateTransformed = dateTransform(date);
 
     for(let i = 0; i < data.length; i++){
 
@@ -202,4 +203,24 @@ function showSlides(n) {
         
     }
 }
+
+//Funcitonallity to change the date and get the new images of 
+//Earth based on that date
+//Fix issue with day displaying incorrectly if you choose the day 
+//of it will roll back a day but not update in input or header
+const dateElement = document.querySelector('#chooseDate');
+const header = document.getElementById('header');
+
+//set max date to todaysDate
+dateElement.setAttribute("max", todaysDate);
+
+//add event listener when date is changed on input
+dateElement.addEventListener('change', (event) => {
+    const newDate = dateElement.value;
+    header.innerText = 'Earth ' + newDate;
+    console.log(newDate);
+    const slideShowChildren = document.getElementsByClassName('slideshow-container')[0];
+    slideShowChildren.innerHTML = "";
+    fetchData(newDate);
+})
 
